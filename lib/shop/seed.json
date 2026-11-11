@@ -1,0 +1,218 @@
+[
+  {
+    "id": "1",
+    "slug": "30th-anniversary-first-partner-seria-1-chinski",
+    "name": "30th Anniversary : First Partner Seria 1 Chiński",
+    "priceCents": 9500,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-1.webp"
+    ],
+    "description": "30th Anniversary : First Partner Seria 1 Chiński\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0001",
+    "status": "published",
+    "isLive": true,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "2",
+    "slug": "terastal-gathering-coin-set-espeon",
+    "name": "Terastal Gathering Coin Set Espeon",
+    "priceCents": 7400,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-2.webp"
+    ],
+    "description": "Terastal Gathering Coin Set Espeon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0002",
+    "status": "published",
+    "isLive": true,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "3",
+    "slug": "terastal-gathering-coin-set-umbreon",
+    "name": "Terastal Gathering Coin Set Umbreon",
+    "priceCents": 7400,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-3.webp"
+    ],
+    "description": "Terastal Gathering Coin Set Umbreon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0003",
+    "status": "published",
+    "isLive": true,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "4",
+    "slug": "terastal-gathering-collectible-gift-box-jolteon",
+    "name": "Terastal Gathering Collectible Gift Box Jolteon",
+    "priceCents": 13500,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-4.webp"
+    ],
+    "description": "Terastal Gathering Collectible Gift Box Jolteon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0004",
+    "status": "published",
+    "isLive": true,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "5",
+    "slug": "terastal-gathering-collectible-gift-box-umbreon",
+    "name": "Terastal Gathering Collectible Gift Box Umbreon",
+    "priceCents": 13500,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-5.webp"
+    ],
+    "description": "Terastal Gathering Collectible Gift Box Umbreon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0005",
+    "status": "published",
+    "isLive": true,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "6",
+    "slug": "terastal-gathering-collectible-gift-box-espeon",
+    "name": "Terastal Gathering Collectible Gift Box Espeon",
+    "priceCents": 13500,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-6.webp"
+    ],
+    "description": "Terastal Gathering Collectible Gift Box Espeon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0006",
+    "status": "published",
+    "isLive": true,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "7",
+    "slug": "naruto-kayou-booster-pack",
+    "name": "Naruto : Kayou Booster Pack",
+    "priceCents": 900,
+    "categorySlug": "booster-6",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-7.webp"
+    ],
+    "description": "Naruto : Kayou Booster Pack\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0007",
+    "status": "published",
+    "isLive": true,
+    "featured": false,
+    "version": 1
+  },
+  {
+    "id": "8",
+    "slug": "naruto-mithos-2-edition",
+    "name": "Naruto : Mithos 2 Edition",
+    "priceCents": 1800,
+    "categorySlug": "booster-6",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-8.webp"
+    ],
+    "description": "Naruto : Mithos 2 Edition\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0008",
+    "status": "published",
+    "isLive": true,
+    "featured": false,
+    "version": 1
+  },
+  {
+    "id": "9",
+    "slug": "one-piece-op17-booster-pack-angielski",
+    "name": "One Piece OP17 Booster Pack Angielski",
+    "priceCents": 6400,
+    "categorySlug": "booster-1",
+    "language": "Angielski",
+    "images": [
+      "/assets/product-9.webp"
+    ],
+    "description": "One Piece OP17 Booster Pack Angielski\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0009",
+    "status": "published",
+    "isLive": true,
+    "featured": false,
+    "version": 1
+  },
+  {
+    "id": "10",
+    "slug": "gem-pack-badge-set",
+    "name": "Gem Pack Badge Set",
+    "priceCents": 9500,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-10.webp"
+    ],
+    "description": "Gem Pack Badge Set\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0010",
+    "status": "published",
+    "isLive": true,
+    "featured": false,
+    "version": 1
+  },
+  {
+    "id": "11",
+    "slug": "chasing-glory-together-badge-set",
+    "name": "Chasing Glory Together Badge Set",
+    "priceCents": 5600,
+    "categorySlug": "rozne-boxy-1",
+    "language": "Chiński",
+    "images": [
+      "/assets/product-11.webp"
+    ],
+    "description": "Chasing Glory Together Badge Set\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0011",
+    "status": "published",
+    "isLive": true,
+    "featured": false,
+    "version": 1
+  },
+  {
+    "id": "12",
+    "slug": "delta-reign-3-pack-blister",
+    "name": "Delta Reign 3 - Pack Blister",
+    "priceCents": 8500,
+    "categorySlug": "blistry-i-inne",
+    "language": "Angielski",
+    "images": [
+      "/assets/product-12.webp"
+    ],
+    "description": "Delta Reign 3 - Pack Blister\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
+    "stock": 0,
+    "sku": "PP-0012",
+    "status": "published",
+    "isLive": true,
+    "featured": false,
+    "version": 1
+  }
+]

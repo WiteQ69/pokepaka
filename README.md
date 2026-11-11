@@ -1,46 +1,60 @@
-# PokePaka — nowa odsłona
+# PokePaka — sklep i panel administratora
 
-Responsywny projekt sklepu kolekcjonerskiego po polsku. Wersja demonstracyjna przygotowana na podstawie publicznego katalogu pokepaka.pl z 11 listopada 2026 r. Aktualizacja: czarno-żółty styl sklepu inspirowany układem Karcianego Bunkra, z własną marką i grafikami PokePaka.
+Nowa, wielostronicowa odsłona PokePaka w czarno-żółtym stylu. Zaplecze działa na Vinext i Cloudflare Workers. Produkty przechowywane są w D1, a zdjęcia przesyłane przez panel w R2.
 
-## Uruchomienie
+## Adresy
 
-Wymagany Node.js 20 lub nowszy. Brak zależności do instalowania.
+- / — strona główna
+- /sklep — pełny katalog
+- /kategoria/pokemon — przykładowa kategoria
+- /kategoria/etb — przykładowa podkategoria
+- /produkt/terastal-gathering-coin-set-espeon — przykładowa strona produktu
+- /live-stream — produkty do otwierania na żywo
+- /wydarzenia — osobna strona wydarzeń
+- /ulubione — zapisane produkty
+- /pomoc — pytania i odpowiedzi
+- /admin — panel administratora
+- /admin/produkty/nowy — dodawanie produktu
+- /admin/kategorie — pełna struktura kategorii
 
-```
-node serve.mjs
-```
+Każda z 50 kategorii z dostarczonego menu ma własny adres. Zwykłe linki i renderowanie po stronie serwera działają także przy bezpośrednim otwarciu lub odświeżeniu podstrony.
 
-Otwórz http://127.0.0.1:4173. Katalog `dist` można umieścić na hostingu statycznym. Strona wymaga serwera HTTP, ponieważ wczytuje products.json.
+## Panel
 
-## Gotowe
+Dostęp wymaga zalogowania przez ChatGPT na konto wskazane w zmiennej środowiskowej ADMIN_EMAIL. Autoryzacja jest sprawdzana na serwerze przy każdej operacji. Przynależność do konta właściciela nie jest ustalana na podstawie przeglądarkowego localStorage.
 
-- Nowy projekt graficzny, układ mobilny i desktopowy.
-- Katalog z 12 przykładowymi produktami, zdjęciami i cenami z obecnego sklepu.
-- Wyszukiwanie, kategorie, typy produktów, sortowanie i doładowywanie listy.
-- Okno szczegółów i link do produktu źródłowego.
-- Ulubione i koszyk zapisane lokalnie w przeglądarce.
-- Zmiana liczby sztuk, usuwanie produktów oraz przeliczanie wartości.
-- Menu mobilne, sekcja YouTube, pytania i odpowiedzi, dane kontaktowe.
+Panel pozwala dodawać i edytować nazwę, adres produktu, opis, cenę brutto, liczbę sztuk, SKU, kategorię, język i galerię do 10 zdjęć. Obsługuje szkice, publikację, wyróżnianie, oznaczanie do live i odwracalną archiwizację. Zdjęcia można przesyłać z dysku, przeciągać lub dodawać przez HTTPS. Pierwsze zdjęcie jest główne; kolejność można zmieniać.
 
-## Przed rozpoczęciem sprzedaży
+Zapis jest trwały, wspólny dla wszystkich urządzeń i od razu widoczny w sklepie. Kontrola wersji zapobiega nadpisaniu równoczesnych zmian z innego okna.
 
-To frontend pokazowy. Nie przyjmuje zamówień ani płatności, a koszyk nie rezerwuje towaru. Ceny i dostępność wymagają synchronizacji z właściwą bazą sklepu. Należy podłączyć backend e-commerce, stany magazynowe, płatności, dostawy, finalizację zakupów i właściwe dokumenty sklepu. Treść oznaczeń demonstracyjnych usunąć dopiero po uruchomieniu obsługi sprzedaży.
+## Pierwsze uruchomienie
 
-## Pliki
+Pierwsze wejście właściciela do panelu importuje 12 produktów z wcześniejszego katalogu. Import jest jednorazowy i nie nadpisuje późniejszych edycji. Początkowy stan magazynowy wynosi 0, ponieważ dostępność tych produktów nie została potwierdzona. Administrator może ją ustawić w formularzu.
 
-- dist/index.html — układ i treści
-- dist/styles.css — styl i responsywność
-- dist/bunker-theme.css — nowa czarno-żółta szata, nagłówek, typografia Oswald i karty produktów
-- dist/app.js — interakcje
-- dist/products.json — przykładowy katalog
-- dist/assets — lokalne zdjęcia oraz ikona
+Kategorie pochodzą z menu HTML przekazanego przez użytkownika. Dane startowe są w lib/shop/seed.json, a hierarchia w lib/shop/categories.json. Import jest oddzielony od migracji schematu.
 
-Zdjęcia produktów: pokepaka.pl. Grafiki kart: images.pokemontcg.io. Ilustracja Eevee: repozytorium PokeAPI/sprites. Znaki Pokémon i nazwy produktów należą do ich właścicieli. Kroje DM Sans, Space Grotesk i Oswald wczytywane są z Google Fonts. Pozostałe elementy graficzne to HTML/CSS i ikony SVG. Logo dostarczył użytkownik; białe tło usunięto narzędziem imagegen. Finalny plik: dist/assets/pokepaka-logo.png (1753 × 897 px, RGBA, przezroczyste narożniki). Umieszczono go w nagłówku i stopce.
+## Rozwój lokalny
 
-Prompt edycji logo: usuń wyłącznie białe tło, zastąp je przezroczystością alfa; zachowaj napis POKEPAKA, kształt, proporcje, żółto-pomarańczowe litery, granatowe i turkusowe kontury oraz czerwone obramowanie; bez nowego projektu, tekstu, efektów i białej obwódki.
+Wymagane Node.js >=22.13 i npm. Zainstaluj zależności zgodnie z workflow Sites, następnie uruchom npm run dev. Lokalny adres jest wypisywany przez serwer (domyślnie http://127.0.0.1:5173).
+
+W lokalnym .dev.vars ustaw ADMIN_EMAIL=seedy@sites.test. Wejdź na /signin-with-chatgpt?return_to=/admin, aby zalogować się tożsamością testową dostarczaną przez starter. Ta symulacja nie występuje w wersji produkcyjnej.
+
+Po zmianie schematu uruchom npm run db:generate. Lokalne migracje D1 i build opisuje dokumentacja startera Sites. Migracje w drizzle są częścią źródeł; nie wolno zmieniać już zastosowanych migracji. Wdrożenie przez Sites stosuje migracje produkcyjne.
 
 ## Weryfikacja
 
-Sprawdzono składnię JavaScript, odpowiedź HTTP, ładowanie obrazów i układ desktopowy oraz mobilny. W przeglądarce sprawdzono wyniki wyszukiwania, pusty wynik, ulubione, okno produktu, dodawanie do koszyka, zmianę ilości i wartości 95 → 190 zł, zachowanie po odświeżeniu, usuwanie, filtry kategorii, 12 produktów po doładowaniu i sortowanie cen rosnąco.
+- Build produkcyjny Vinext i kontrola typów TypeScript.
+- Test integracyjny tests/catalog-integration.mjs: 50 adresów kategorii, strony produktów, 404, ochrona panelu, odrzucanie podszytych nagłówków, ochrona przed obcym Origin, walidacja cen i zdjęć, tworzenie, trwała edycja, konflikt wersji, duplikaty adresów, szkice, archiwizacja i przywracanie.
+- Faktyczne przesłanie obrazów do R2 i odczyt zapisanych bajtów; odrzucenie SVG.
+- Test w przeglądarce: utworzenie produktu z dwiema fotografiami, galeria, cena i liczba sztuk oraz suma koszyka 2 × 149,99 zł = 299,98 zł.
+- Układy mobilne 390 px, kategorie, produkt, lista i formularz administratora bez poziomego przepełnienia.
 
-Po aktualizacji sprawdzono wyszukiwarkę z nowym przyciskiem, przeliczenie koszyka 95 → 190 zł, menu mobilne, filtr One Piece, szczegóły produktu i układy 390, 768 oraz 1440 px. Brak poziomego przepełnienia i uszkodzonych obrazów w sprawdzonych widokach.
+## Zakres sprzedaży
+
+Katalog, magazyn i panel administratora mają działające zaplecze. Koszyk i ulubione są zapisywane lokalnie na urządzeniu klienta. Koszyk sprawdza aktualne ceny i dostępność produktów, ale nie rezerwuje towaru.
+
+Finalizacja zamówień, płatności, wysyłki i obsługa zamówień nie są jeszcze podłączone. Strona jawnie informuje o tym w koszyku i na stronie produktu. Nie przyjmuje płatności ani nie składa zamówień.
+
+## Grafiki
+
+Logo z przezroczystym tłem zostało przygotowane z pliku użytkownika i znajduje się w public/assets/pokepaka-logo.png. Zdjęcia produktów pochodzą z pokepaka.pl, grafiki kart z images.pokemontcg.io, a ilustracja Eevee z PokeAPI/sprites. Znaki Pokémon i nazwy produktów należą do właścicieli. Kroje są wczytywane z Google Fonts.
