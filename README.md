@@ -21,7 +21,7 @@ Każda z 50 kategorii z dostarczonego menu ma własny adres. Zwykłe linki i ren
 
 ## Panel
 
-Dostęp wymaga zalogowania przez ChatGPT na konto wskazane w zmiennej środowiskowej ADMIN_EMAIL. Autoryzacja jest sprawdzana na serwerze przy każdej operacji. Przynależność do konta właściciela nie jest ustalana na podstawie przeglądarkowego localStorage.
+Dostęp wymaga zalogowania przez ChatGPT na konto rozpoznawane przez serwerowy odcisk SHA-256 w zmiennej ADMIN_EMAIL_SHA256. Autoryzacja jest sprawdzana na serwerze przy każdej operacji. Przynależność do konta właściciela nie jest ustalana na podstawie przeglądarkowego localStorage.
 
 Panel pozwala dodawać i edytować nazwę, adres produktu, opis, cenę brutto, liczbę sztuk, SKU, kategorię, język i galerię do 10 zdjęć. Obsługuje szkice, publikację, wyróżnianie, oznaczanie do live i odwracalną archiwizację. Zdjęcia można przesyłać z dysku, przeciągać lub dodawać przez HTTPS. Pierwsze zdjęcie jest główne; kolejność można zmieniać.
 
@@ -37,7 +37,7 @@ Kategorie pochodzą z menu HTML przekazanego przez użytkownika. Dane startowe s
 
 Wymagane Node.js >=22.13 i npm. Zainstaluj zależności zgodnie z workflow Sites, następnie uruchom npm run dev. Lokalny adres jest wypisywany przez serwer (domyślnie http://127.0.0.1:5173).
 
-W lokalnym .dev.vars ustaw ADMIN_EMAIL=seedy@sites.test. Wejdź na /signin-with-chatgpt?return_to=/admin, aby zalogować się tożsamością testową dostarczaną przez starter. Ta symulacja nie występuje w wersji produkcyjnej.
+W lokalnym .dev.vars ustaw ADMIN_EMAIL_SHA256 na odcisk SHA-256 lokalnego konta testowego seedy@sites.test. Wejdź na /signin-with-chatgpt?return_to=/admin, aby zalogować się tożsamością testową dostarczaną przez starter. Ta symulacja nie występuje w wersji produkcyjnej.
 
 Po zmianie schematu uruchom npm run db:generate. Lokalne migracje D1 i build opisuje dokumentacja startera Sites. Migracje w drizzle są częścią źródeł; nie wolno zmieniać już zastosowanych migracji. Wdrożenie przez Sites stosuje migracje produkcyjne.
 
@@ -58,3 +58,7 @@ Finalizacja zamówień, płatności, wysyłki i obsługa zamówień nie są jesz
 ## Grafiki
 
 Logo z przezroczystym tłem zostało przygotowane z pliku użytkownika i znajduje się w public/assets/pokepaka-logo.png. Zdjęcia produktów pochodzą z pokepaka.pl, grafiki kart z images.pokemontcg.io, a ilustracja Eevee z PokeAPI/sprites. Znaki Pokémon i nazwy produktów należą do właścicieli. Kroje są wczytywane z Google Fonts.
+
+## Prywatność administratora
+
+Panel wyświetla wyłącznie neutralny podpis Administrator. Adres e-mail i nazwa zalogowanego użytkownika nie są przekazywane do HTML ani danych przeglądarkowych. Serwer porównuje odcisk konta z sekretem ADMIN_EMAIL_SHA256; konfiguracja aplikacji nie przechowuje adresu e-mail administratora w jawnej postaci. Adres podglądu jest nadawany niezależnie przez hosting.

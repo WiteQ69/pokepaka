@@ -8,6 +8,7 @@ async function request(path,{method='GET',body,headers={},authenticated=true}={}
 const check=(actual,expected,label)=>{assert.equal(actual,expected,label);assertions++};
 check((await request('/api/admin/products',{authenticated:false})).status,401,'Anonymous admin denied');
 check((await request('/api/admin/products',{authenticated:false,headers:{'oai-authenticated-user-id':'spoofed','oai-authenticated-user-email':'seedy@sites.test'}})).status,401,'Spoofed identity headers denied');
+const adminHtml=await request('/admin');check(adminHtml.status,200,'Administrator remains authorized');assert.ok(!adminHtml.content.includes('seedy@sites.test'),'Account email excluded from HTML');assert.ok(!adminHtml.content.includes('local_seedy'),'Account id excluded from HTML');assertions+=2;
 const seed=await request('/api/admin/products');check(seed.status,200,'Owner catalog available');assert.ok(seed.value.total>=12);
 const all=JSON.parse(await fs.readFile('lib/shop/categories.json','utf8'));const flatten=nodes=>nodes.flatMap(c=>[c,...flatten(c.children)]);
 for(const c of flatten(all)){const path=c.slug==='live-stream'?'/live-stream':c.slug==='wydarzenia'?'/wydarzenia':'/kategoria/'+c.slug;check((await request(path,{authenticated:false})).status,200,'Category page '+path)}
