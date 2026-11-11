@@ -1,0 +1,134 @@
+[
+  {
+    "id": 1,
+    "name": "30th Anniversary : First Partner Seria 1 Chiński",
+    "price": 95,
+    "url": "https://pokepaka.pl/produkt/30th-anniversary-first-partner-seria-1-chinski",
+    "image": "assets/product-1.webp",
+    "remote": "https://pokepaka.pl/images/glowne/22967bcc-302f-4c27-814b-31712f5cdc09-min.webp",
+    "category": "Pokémon",
+    "type": "Kolekcje",
+    "language": "Chiński"
+  },
+  {
+    "id": 2,
+    "name": "Terastal Gathering Coin Set Espeon",
+    "price": 74,
+    "url": "https://pokepaka.pl/produkt/terastal-gathering-coin-set-espeon",
+    "image": "assets/product-2.webp",
+    "remote": "https://pokepaka.pl/images/glowne/58295620-6d2c-428f-b8c6-e4a6f337f037-min.webp",
+    "category": "Pokémon",
+    "type": "Kolekcje",
+    "language": "Chiński"
+  },
+  {
+    "id": 3,
+    "name": "Terastal Gathering Coin Set Umbreon",
+    "price": 74,
+    "url": "https://pokepaka.pl/produkt/terastal-gathering-coin-set-umbreon",
+    "image": "assets/product-3.webp",
+    "remote": "https://pokepaka.pl/images/glowne/0f34433d-2198-48a2-8cc3-05ef74f71c71-min.webp",
+    "category": "Pokémon",
+    "type": "Kolekcje",
+    "language": "Chiński"
+  },
+  {
+    "id": 4,
+    "name": "Terastal Gathering Collectible Gift Box Jolteon",
+    "price": 135,
+    "url": "https://pokepaka.pl/produkt/terastal-gathering-collectible-gift-box-jolteon",
+    "image": "assets/product-4.webp",
+    "remote": "https://pokepaka.pl/images/glowne/5bd81429-6274-4797-8ede-869892778acc-min.webp",
+    "category": "Pokémon",
+    "type": "Boxy i zestawy",
+    "language": "Chiński"
+  },
+  {
+    "id": 5,
+    "name": "Terastal Gathering Collectible Gift Box Umbreon",
+    "price": 135,
+    "url": "https://pokepaka.pl/produkt/terastal-gathering-collectible-gift-box-umbreon",
+    "image": "assets/product-5.webp",
+    "remote": "https://pokepaka.pl/images/glowne/b4e516f3-4e1d-432b-96a9-e8d012827ba0-min.webp",
+    "category": "Pokémon",
+    "type": "Boxy i zestawy",
+    "language": "Chiński"
+  },
+  {
+    "id": 6,
+    "name": "Terastal Gathering Collectible Gift Box Espeon",
+    "price": 135,
+    "url": "https://pokepaka.pl/produkt/terastal-gathering-collectible-gift-box-espeon",
+    "image": "assets/product-6.webp",
+    "remote": "https://pokepaka.pl/images/glowne/dee284e2-da37-4cf6-9487-f14d8c39555c-min.webp",
+    "category": "Pokémon",
+    "type": "Boxy i zestawy",
+    "language": "Chiński"
+  },
+  {
+    "id": 7,
+    "name": "Naruto : Kayou Booster Pack",
+    "price": 9,
+    "url": "https://pokepaka.pl/produkt/naruto-kayou-booster-pack",
+    "image": "assets/product-7.webp",
+    "remote": "https://pokepaka.pl/images/glowne/87f1eb9b-c8ae-4ead-a0ab-85f8d3ee9c6d-min.webp",
+    "category": "Inne TCG",
+    "type": "Boostery",
+    "language": "Chiński"
+  },
+  {
+    "id": 8,
+    "name": "Naruto : Mithos 2 Edition",
+    "price": 18,
+    "url": "https://pokepaka.pl/produkt/naruto-mithos-2-edition",
+    "image": "assets/product-8.webp",
+    "remote": "https://pokepaka.pl/images/glowne/b8f0f047-e70b-4f51-8793-0585efa26c49-min.webp",
+    "category": "Inne TCG",
+    "type": "Boostery",
+    "language": "Chiński"
+  },
+  {
+    "id": 9,
+    "name": "One Piece OP17 Booster Pack Angielski",
+    "price": 64,
+    "url": "https://pokepaka.pl/produkt/one-piece-op17-booster-pack-angielski",
+    "image": "assets/product-9.webp",
+    "remote": "https://pokepaka.pl/images/glowne/0df99caa-8062-4b88-8eb7-ffb33dfd6da1-min.webp",
+    "category": "One Piece",
+    "type": "Boostery",
+    "language": "Angielski"
+  },
+  {
+    "id": 10,
+    "name": "Gem Pack Badge Set",
+    "price": 95,
+    "url": "https://pokepaka.pl/produkt/gem-pack-badge-set",
+    "image": "assets/product-10.webp",
+    "remote": "https://pokepaka.pl/images/glowne/3b900871-320d-4458-9044-5e87284ffd1b-min.webp",
+    "category": "Pokémon",
+    "type": "Kolekcje",
+    "language": "Chiński"
+  },
+  {
+    "id": 11,
+    "name": "Chasing Glory Together Badge Set",
+    "price": 56,
+    "url": "https://pokepaka.pl/produkt/chasing-glory-together-badge-set",
+    "image": "assets/product-11.webp",
+    "remote": "https://pokepaka.pl/images/glowne/083c8364-444f-437a-beef-d1aead5c8334-min.webp",
+    "category": "Pokémon",
+    "type": "Kolekcje",
+    "language": "Chiński"
+  },
+  {
+    "id": 12,
+    "name": "Delta Reign 3 - Pack Blister",
+    "price": 85,
+    "url": "https://pokepaka.pl/produkt/delta-reign-3-pack-blister",
+    "image": "assets/product-12.webp",
+    "remote": "https://pokepaka.pl/images/glowne/7a3b960d-ad39-4d86-b3c0-95384f297ec6-min.webp",
+    "category": "Pokémon",
+    "type": "Kolekcje",
+    "language": "Chiński"
+  }
+]
