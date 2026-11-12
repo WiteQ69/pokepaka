@@ -25,6 +25,9 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "@shop/runtime": [
+        "./lib/shop/runtime-vercel.ts"
       ]
     },
     "types": [

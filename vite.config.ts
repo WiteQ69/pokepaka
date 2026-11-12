@@ -1,3 +1,4 @@
+import {fileURLToPath} from "node:url";
 import vinext from "vinext";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
@@ -44,6 +45,7 @@ export default defineConfig(async ({ command }) => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
+    resolve:{alias:{"@shop/runtime":fileURLToPath(new URL("./lib/shop/runtime-cloudflare.ts",import.meta.url))}},
     server: {
       ...(managedLinux
         ? { host: "0.0.0.0", allowedHosts: ["terminal.local"] }
@@ -53,6 +55,15 @@ export default defineConfig(async ({ command }) => {
         : {}),
     },
     plugins: [
+      {
+        name: "pokepaka-cloudflare-runtime",
+        enforce: "pre",
+        resolveId(source: string) {
+          if (source === "@shop/runtime" || source.replace(/\\/g,"/").endsWith("/lib/shop/runtime-vercel.ts")) {
+            return fileURLToPath(new URL("./lib/shop/runtime-cloudflare.ts",import.meta.url));
+          }
+        },
+      },
       vinext(),
       sites({ mockAuth: !managedLinux }),
       connectorPreview(),

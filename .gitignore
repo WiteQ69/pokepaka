@@ -44,3 +44,7 @@ yarn-error.log*
 
 # OS metadata
 .DS_Store
+
+# Local-only Vercel development data and authentication
+/.local/
+/.vercel/

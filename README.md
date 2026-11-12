@@ -1,64 +1,66 @@
 # PokePaka — sklep i panel administratora
 
-Nowa, wielostronicowa odsłona PokePaka w czarno-żółtym stylu. Zaplecze działa na Vinext i Cloudflare Workers. Produkty przechowywane są w D1, a zdjęcia przesyłane przez panel w R2.
+Wielostronicowy sklep Pokémon w czarno-żółtym stylu: 50 kategorii z osobnymi adresami, strony produktów, wyszukiwanie, filtrowanie i panel zarządzania produktami.
 
-## Adresy
+## Vercel
 
-- / — strona główna
-- /sklep — pełny katalog
-- /kategoria/pokemon — przykładowa kategoria
-- /kategoria/etb — przykładowa podkategoria
-- /produkt/terastal-gathering-coin-set-espeon — przykładowa strona produktu
-- /live-stream — produkty do otwierania na żywo
-- /wydarzenia — osobna strona wydarzeń
-- /ulubione — zapisane produkty
-- /pomoc — pytania i odpowiedzi
-- /admin — panel administratora
-- /admin/produkty/nowy — dodawanie produktu
-- /admin/kategorie — pełna struktura kategorii
+Domyślny build: **Next.js**, Node.js **24.x**. Produkty: **Neon PostgreSQL**. Zdjęcia: **prywatny Vercel Blob**. Instrukcja podłączenia usług i ustawienia hasła: [VERCEL.md](./VERCEL.md).
 
-Każda z 50 kategorii z dostarczonego menu ma własny adres. Zwykłe linki i renderowanie po stronie serwera działają także przy bezpośrednim otwarciu lub odświeżeniu podstrony.
+```powershell
+npm ci
+npm run build
+npm start
+```
 
-## Panel
+Build generuje `.next/routes-manifest.json` i wykonuje migrację PostgreSQL, jeśli ustawiono połączenie. Bez skonfigurowanych usług publiczny katalog startowy działa tylko do odczytu; panel wyświetla brakujące ustawienia.
 
-Dostęp wymaga zalogowania przez ChatGPT na konto rozpoznawane przez serwerowy odcisk SHA-256 w zmiennej ADMIN_EMAIL_SHA256. Autoryzacja jest sprawdzana na serwerze przy każdej operacji. Przynależność do konta właściciela nie jest ustalana na podstawie przeglądarkowego localStorage.
+## Lokalnie
 
-Panel pozwala dodawać i edytować nazwę, adres produktu, opis, cenę brutto, liczbę sztuk, SKU, kategorię, język i galerię do 10 zdjęć. Obsługuje szkice, publikację, wyróżnianie, oznaczanie do live i odwracalną archiwizację. Zdjęcia można przesyłać z dysku, przeciągać lub dodawać przez HTTPS. Pierwsze zdjęcie jest główne; kolejność można zmieniać.
+W pustej konfiguracji lokalnej:
 
-Zapis jest trwały, wspólny dla wszystkich urządzeń i od razu widoczny w sklepie. Kontrola wersji zapobiega nadpisaniu równoczesnych zmian z innego okna.
+```powershell
+npm ci
+node scripts/create-admin-env.mjs
+Copy-Item .local/admin-vercel.env .env.local
+Add-Content .env.local 'POKEPAKA_LOCAL=1'
+npm run dev
+```
 
-## Pierwsze uruchomienie
+Jeżeli `.env.local` już istnieje, dodaj brakujące klucze ręcznie, zachowując dotychczasową konfigurację. Adres domyślny: `http://localhost:3000`. Hasło do `/admin` znajduje się w `.local/admin-password.txt`. Lokalna baza SQLite i zdjęcia są w ignorowanym katalogu `.local`. Ten tryb nigdy nie uruchamia zapisu do SQLite na Vercel.
 
-Pierwsze wejście właściciela do panelu importuje 12 produktów z wcześniejszego katalogu. Import jest jednorazowy i nie nadpisuje późniejszych edycji. Początkowy stan magazynowy wynosi 0, ponieważ dostępność tych produktów nie została potwierdzona. Administrator może ją ustawić w formularzu.
+## Adresy i panel
 
-Kategorie pochodzą z menu HTML przekazanego przez użytkownika. Dane startowe są w lib/shop/seed.json, a hierarchia w lib/shop/categories.json. Import jest oddzielony od migracji schematu.
+- `/`, `/sklep` — strona główna i katalog
+- `/kategoria/pokemon`, `/kategoria/etb` — osobne kategorie
+- `/produkt/terastal-gathering-coin-set-espeon` — strona produktu
+- `/live-stream`, `/wydarzenia`, `/ulubione`, `/pomoc` — osobne podstrony
+- `/admin/login`, `/admin`, `/admin/produkty/nowy`, `/admin/kategorie` — logowanie i zarządzanie
 
-## Rozwój lokalny
+Panel obsługuje nazwę, adres produktu, opis, cenę brutto, stan, SKU, kategorię, język i galerię do 10 zdjęć. Pozwala tworzyć szkice, publikować, wyróżniać, oznaczać do live, archiwizować i przywracać. Limit zdjęcia wynosi 4 MB; pierwsze zdjęcie jest główne, kolejność można zmieniać.
 
-Wymagane Node.js >=22.13 i npm. Zainstaluj zależności zgodnie z workflow Sites, następnie uruchom npm run dev. Lokalny adres jest wypisywany przez serwer (domyślnie http://127.0.0.1:5173).
+Autoryzacja i walidacja odbywają się na serwerze. Kontrola wersji chroni równoczesne zmiany. Vercel korzysta z podpisanej sesji i hasła przechowywanego jako scrypt. Nagłówki tożsamości Cloudflare nie dają dostępu do panelu na Vercel.
 
-W lokalnym .dev.vars ustaw ADMIN_EMAIL_SHA256 na odcisk SHA-256 lokalnego konta testowego seedy@sites.test. Wejdź na /signin-with-chatgpt?return_to=/admin, aby zalogować się tożsamością testową dostarczaną przez starter. Ta symulacja nie występuje w wersji produkcyjnej.
+Kategorie są w `lib/shop/categories.json`, a 12 produktów startowych w `lib/shop/seed.json`. Jednorazowy import nie nadpisuje edycji. Stan początkowy wynosi 0, ponieważ dostępność nie została potwierdzona.
 
-Po zmianie schematu uruchom npm run db:generate. Lokalne migracje D1 i build opisuje dokumentacja startera Sites. Migracje w drizzle są częścią źródeł; nie wolno zmieniać już zastosowanych migracji. Wdrożenie przez Sites stosuje migracje produkcyjne.
+## Zgodność z Sites
+
+Zachowano osobny runtime Cloudflare D1/R2 i logowanie Sites. Polecenia `npm run dev:sites`, `npm run build:sites` i `npm run start:sites` uruchamiają ten wariant. Budowanie przez workflow Sites wymaga `POKEPAKA_TARGET=cloudflare`.
+
+Na Sites serwer rozpoznaje administratora po sekrecie `ADMIN_EMAIL_SHA256`; adres e-mail nie jest wyświetlany w interfejsie. Migracje D1 pozostają w `drizzle`, a schemat PostgreSQL w `db/postgres.sql`. Dane z D1/R2 nie są automatycznie kopiowane do Neon/Blob.
 
 ## Weryfikacja
 
-- Build produkcyjny Vinext i kontrola typów TypeScript.
-- Test integracyjny tests/catalog-integration.mjs: 50 adresów kategorii, strony produktów, 404, ochrona panelu, odrzucanie podszytych nagłówków, ochrona przed obcym Origin, walidacja cen i zdjęć, tworzenie, trwała edycja, konflikt wersji, duplikaty adresów, szkice, archiwizacja i przywracanie.
-- Faktyczne przesłanie obrazów do R2 i odczyt zapisanych bajtów; odrzucenie SVG.
-- Test w przeglądarce: utworzenie produktu z dwiema fotografiami, galeria, cena i liczba sztuk oraz suma koszyka 2 × 149,99 zł = 299,98 zł.
-- Układy mobilne 390 px, kategorie, produkt, lista i formularz administratora bez poziomego przepełnienia.
+Test integracyjny sprawdza 50 kategorii, produkty, 404, autoryzację, walidację i ochronę Origin, CRUD, konflikty wersji, szkice, archiwizację, galerie oraz zapis i odczyt zdjęć. Przeciwko lokalnemu Next.js na porcie 3000:
 
-## Zakres sprzedaży
+```powershell
+$env:POKEPAKA_TEST_RUNTIME='vercel'
+node tests/catalog-integration.mjs
+```
 
-Katalog, magazyn i panel administratora mają działające zaplecze. Koszyk i ulubione są zapisywane lokalnie na urządzeniu klienta. Koszyk sprawdza aktualne ceny i dostępność produktów, ale nie rezerwuje towaru.
+Test korzysta z lokalnego hasła i tworzy produkt testowy, który na końcu archiwizuje. Nie uruchamiaj go przeciwko katalogowi produkcyjnemu.
 
-Finalizacja zamówień, płatności, wysyłki i obsługa zamówień nie są jeszcze podłączone. Strona jawnie informuje o tym w koszyku i na stronie produktu. Nie przyjmuje płatności ani nie składa zamówień.
+## Zakres sprzedaży i grafiki
 
-## Grafiki
+Koszyk i ulubione zapisują się na urządzeniu klienta. Koszyk sprawdza ceny i dostępność, ale nie rezerwuje towaru. Płatności, finalizacja zamówień, wysyłka i obsługa zamówień wymagają osobnej integracji; strona informuje o tym klienta i nie przyjmuje płatności.
 
-Logo z przezroczystym tłem zostało przygotowane z pliku użytkownika i znajduje się w public/assets/pokepaka-logo.png. Zdjęcia produktów pochodzą z pokepaka.pl, grafiki kart z images.pokemontcg.io, a ilustracja Eevee z PokeAPI/sprites. Znaki Pokémon i nazwy produktów należą do właścicieli. Kroje są wczytywane z Google Fonts.
-
-## Prywatność administratora
-
-Panel wyświetla wyłącznie neutralny podpis Administrator. Adres e-mail i nazwa zalogowanego użytkownika nie są przekazywane do HTML ani danych przeglądarkowych. Serwer porównuje odcisk konta z sekretem ADMIN_EMAIL_SHA256; konfiguracja aplikacji nie przechowuje adresu e-mail administratora w jawnej postaci. Adres podglądu jest nadawany niezależnie przez hosting.
+Przezroczyste logo znajduje się w `public/assets/pokepaka-logo.png`. Zdjęcia produktów pochodzą z pokepaka.pl, grafiki kart z images.pokemontcg.io, a ilustracja Eevee z PokeAPI/sprites. Znaki Pokémon i nazwy produktów należą do ich właścicieli.

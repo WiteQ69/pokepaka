@@ -1,7 +1,9 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-const origin='http://127.0.0.1:5173';
-const login=await fetch(origin+'/signin-with-chatgpt?return_to=/admin',{redirect:'manual'});
+const vercel=process.env.POKEPAKA_TEST_RUNTIME==='vercel';
+const origin=process.env.TEST_ORIGIN||(vercel?'http://127.0.0.1:3000':'http://127.0.0.1:5173');
+const login=vercel?await fetch(origin+'/admin/login',{method:'POST',redirect:'manual',headers:{origin,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({password:(await fs.readFile('.local/admin-password.txt','utf8')).trim(),return_to:'/admin'})}):await fetch(origin+'/signin-with-chatgpt?return_to=/admin',{redirect:'manual'});
+if(!login.headers.get('set-cookie')){const content=await login.text();throw Error(JSON.stringify({loginStatus:login.status,error:content.match(/class="login-error"[^>]*>([^<]+)/)?.[1],needsSetup:content.includes('Do uzupełnienia')}))}
 const auth={cookie:login.headers.get('set-cookie').split(';')[0]};
 let assertions=0;
 async function request(path,{method='GET',body,headers={},authenticated=true}={}){const r=await fetch(origin+path,{method,headers:{...(authenticated?auth:{}),...(method==='GET'?{}:{origin}),'Content-Type':'application/json',...headers},...(body?{body:JSON.stringify(body)}:{})});const content=await r.text();let value;try{value=JSON.parse(content)}catch{}return {status:r.status,content,value}}
