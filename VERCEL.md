@@ -71,4 +71,4 @@ Skrypt korzysta z obecnego hasła zapisanego lokalnie, generuje nowe i sprawdza 
 
 Aktywny hash po zmianie jest przechowywany w bazie PostgreSQL w `app_meta`; ma pierwszeństwo przed początkowym `ADMIN_PASSWORD_HASH` z Vercel. Rotacja unieważnia poprzednie sesje. Awaria odczytu bazy blokuje logowanie, bez przywracania starego hasła. `ADMIN_SESSION_SECRET` pozostaje kluczem serwera i nie trafia do bazy. Endpoint `POST /api/admin/password` wymaga aktualnej sesji, obecnego hasła i zgodnego nagłówka Origin.
 
-Strona główna wyświetla obecnie wyłącznie logo i komunikat „Prace w toku”; panel pozostaje dostępny pod `/admin`.
+Strona główna wyświetla obecnie wyłącznie komunikat „Prace w toku”; panel pozostaje dostępny pod `/admin`.
