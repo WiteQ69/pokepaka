@@ -58,3 +58,17 @@ Jeśli powraca `NEXT_NO_ROUTES_MANIFEST`, sprawdź Root Directory, nadpisania Bu
 Jeśli baza zgłasza błąd podczas budowania, sprawdź `DATABASE_URL`, status Neon i zakres środowiska zmiennej. `npm run db:migrate:vercel` wykonuje tę samą migrację ręcznie z lokalnym `.env.local` wskazującym właściwą bazę.
 
 Dokumentacja: [Next.js na Vercel](https://vercel.com/docs/frameworks/full-stack/nextjs), [Neon i Vercel](https://neon.com/docs/guides/vercel-overview), [Vercel Blob](https://vercel.com/docs/vercel-blob/using-blob-sdk).
+
+## Zmiana hasła po wdrożeniu
+
+Po pierwszym uruchomieniu można zmienić hasło poleceniem:
+
+```powershell
+node scripts/change-admin-password.mjs https://pokepaka.vercel.app
+```
+
+Skrypt korzysta z obecnego hasła zapisanego lokalnie, generuje nowe i sprawdza logowanie oraz odrzucenie starego hasła i sesji. Nowe hasło zapisuje w ignorowanym przez Git pliku `.local/admin-password.txt`. Nie wypisuje haseł w terminalu. Przed żądaniem zachowuje nowe hasło w lokalnym pliku odzyskiwania; ponowne uruchomienie kończy przerwaną operację.
+
+Aktywny hash po zmianie jest przechowywany w bazie PostgreSQL w `app_meta`; ma pierwszeństwo przed początkowym `ADMIN_PASSWORD_HASH` z Vercel. Rotacja unieważnia poprzednie sesje. Awaria odczytu bazy blokuje logowanie, bez przywracania starego hasła. `ADMIN_SESSION_SECRET` pozostaje kluczem serwera i nie trafia do bazy. Endpoint `POST /api/admin/password` wymaga aktualnej sesji, obecnego hasła i zgodnego nagłówka Origin.
+
+Strona główna wyświetla obecnie wyłącznie logo i komunikat „Prace w toku”; panel pozostaje dostępny pod `/admin`.
