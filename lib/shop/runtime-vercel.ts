@@ -6,7 +6,7 @@ import {postgresDatabase,sqliteDatabase} from './node-database';
 import {loginPage} from './login-view';
 import {activeCredentials,matchesPassword,sessionSignature,rotatePassword} from './admin-credentials';
 
-const local=process.env.POKEPAKA_LOCAL==='1'&&!process.env.VERCEL;
+const local=process.env.SHOP_LOCAL==='1'&&!process.env.VERCEL;
 const databaseURL=process.env.DATABASE_URL||process.env.POSTGRES_URL;
 const configuredBlob=Boolean(process.env.BLOB_READ_WRITE_TOKEN||process.env.BLOB_STORE_ID&&process.env.VERCEL_OIDC_TOKEN);
 export const uploadLimit=4*1024*1024;
@@ -14,7 +14,7 @@ let cachedDB:D1Database|undefined;
 const bucket={async put(key:string,bytes:Uint8Array,options:any){if(configuredBlob){await put('products/'+key,Buffer.from(bytes),{access:'private',addRandomSuffix:false,contentType:options?.httpMetadata?.contentType});return}if(!local)throw Error('Photo storage is not configured.');await mkdir(join(process.cwd(),'.local/media'),{recursive:true});await writeFile(join(process.cwd(),'.local/media',key),bytes)},async get(key:string){if(configuredBlob){const result=await get('products/'+key,{access:'private',useCache:false});if(!result||result.statusCode!==200||!result.stream)return null;return {body:result.stream,httpMetadata:{contentType:result.blob.contentType||'application/octet-stream'}}}if(!local)return null;try{const bytes=await readFile(join(process.cwd(),'.local/media',key));const extension=key.split('.').at(-1)||'';return {body:new Uint8Array(bytes),httpMetadata:{contentType:({png:'image/png',jpg:'image/jpeg',webp:'image/webp',gif:'image/gif'} as Record<string,string>)[extension]||'application/octet-stream'}}}catch{return null}}};
 export const env={get DB(){if(!cachedDB)cachedDB=databaseURL?postgresDatabase(databaseURL):sqliteDatabase(local);return cachedDB},get BUCKET(){return configuredBlob||local?bucket as unknown as R2Bucket:undefined}};
 export const adminStorageReady=()=>Boolean(databaseURL||local)&&Boolean(configuredBlob||local);
-const cookieName='pokepaka_admin',lifetime=8*60*60;
+const cookieName='tcg-shop_admin',lifetime=8*60*60;
 const secret=()=>process.env.ADMIN_SESSION_SECRET||'';
 const authReady=()=>Boolean(process.env.ADMIN_PASSWORD_HASH?.startsWith('scrypt:')&&secret().length>=32);
 const credentials=()=>activeCredentials(env.DB,process.env.ADMIN_PASSWORD_HASH||'');

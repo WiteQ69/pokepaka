@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "PokePaka",
+  title: "Twój sklep TCG",
   description: "Sklep z kartami kolekcjonerskimi Pokémon i TCG.",
   icons: {
     icon: "/favicon.svg",

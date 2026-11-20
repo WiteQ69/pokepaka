@@ -1,4 +1,4 @@
-# PokePaka na Vercel
+# Twój sklep TCG na Vercel
 
 Projekt działa jako Next.js na Node.js 24. Produkty zapisuje w PostgreSQL (Neon), a zdjęcia w prywatnym Vercel Blob. Panel `/admin` ma własne logowanie hasłem.
 
@@ -12,7 +12,7 @@ Repozytorium sklepu na GitHub, gałąź `main`. Root Directory: `./`, czyli kata
 - Install Command: `npm ci`
 - Output Directory: `.next`
 
-Te ustawienia zawiera także `vercel.json`. Usuń stare nadpisania wskazujące `dist`, Vinext lub `build:sites`. Usuń `POKEPAKA_TARGET=cloudflare`, jeśli ustawiono je w Vercel. Build musi zakończyć się komunikatem `Verified: .next/routes-manifest.json is ready for Vercel.`
+Te ustawienia zawiera także `vercel.json`. Usuń stare nadpisania wskazujące `dist`, Vinext lub `build:sites`. Usuń `SHOP_TARGET=cloudflare`, jeśli ustawiono je w Vercel. Build musi zakończyć się komunikatem `Verified: .next/routes-manifest.json is ready for Vercel.`
 
 ## Baza produktów — Neon
 
@@ -64,11 +64,11 @@ Dokumentacja: [Next.js na Vercel](https://vercel.com/docs/frameworks/full-stack/
 Po pierwszym uruchomieniu można zmienić hasło poleceniem:
 
 ```powershell
-node scripts/change-admin-password.mjs https://pokepaka.vercel.app
+node scripts/change-admin-password.mjs https://tcg-shop.vercel.app
 ```
 
 Skrypt korzysta z obecnego hasła zapisanego lokalnie, generuje nowe i sprawdza logowanie oraz odrzucenie starego hasła i sesji. Nowe hasło zapisuje w ignorowanym przez Git pliku `.local/admin-password.txt`. Nie wypisuje haseł w terminalu. Przed żądaniem zachowuje nowe hasło w lokalnym pliku odzyskiwania; ponowne uruchomienie kończy przerwaną operację.
 
 Aktywny hash po zmianie jest przechowywany w bazie PostgreSQL w `app_meta`; ma pierwszeństwo przed początkowym `ADMIN_PASSWORD_HASH` z Vercel. Rotacja unieważnia poprzednie sesje. Awaria odczytu bazy blokuje logowanie, bez przywracania starego hasła. `ADMIN_SESSION_SECRET` pozostaje kluczem serwera i nie trafia do bazy. Endpoint `POST /api/admin/password` wymaga aktualnej sesji, obecnego hasła i zgodnego nagłówka Origin.
 
-Strona główna wyświetla obecnie wyłącznie komunikat „Prace w toku”; panel pozostaje dostępny pod `/admin`.
+Strona główna prezentuje pokazowy sklep, przykładowe produkty i napis „TWOJE LOGO”. Panel jest dostępny pod `/admin`.

@@ -56,7 +56,7 @@ export default defineConfig(async ({ command }) => {
     },
     plugins: [
       {
-        name: "pokepaka-cloudflare-runtime",
+        name: "tcg-shop-cloudflare-runtime",
         enforce: "pre",
         resolveId(source: string) {
           if (source === "@shop/runtime" || source.replace(/\\/g,"/").endsWith("/lib/shop/runtime-vercel.ts")) {

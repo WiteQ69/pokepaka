@@ -2,7 +2,6 @@ import {env,isAdmin,isAuthenticated,adminRedirect,handleAuth,adminStorageReady,a
 import seed from './seed.json';
 import {fromRow,validateProduct,descendants,categoryMap,Product} from './catalog';
 import {storePage,adminPage,errorPage} from './views';
-import {maintenancePage} from './maintenance';
 
 class HttpError extends Error{constructor(public status:number,message:string){super(message)}}
 const responseHeaders={'X-Content-Type-Options':'nosniff','Referrer-Policy':'strict-origin-when-cross-origin','X-Frame-Options':'SAMEORIGIN','Cache-Control':'no-store'};
@@ -31,7 +30,6 @@ export async function getProduct(db:D1Database,key:string,byId=false,admin=false
 async function upload(request:Request){if(!env.BUCKET)throw new HttpError(503,'Magazyn zdjęć jest chwilowo niedostępny.');const bytes=await readLimited(request,uploadLimit+128*1024);let data;try{data=await new Request(request.url,{method:'POST',headers:{'Content-Type':request.headers.get('content-type')||''},body:bytes}).formData()}catch{throw new HttpError(400,'Niepoprawny formularz zdjęcia.')}const file=data.get('file');if(!file||typeof file==='string'||!file.size)throw new HttpError(400,'Wybierz zdjęcie.');if(file.size>uploadLimit)throw new HttpError(413,'Zdjęcie może mieć maksymalnie 4 MB.');const buffer=new Uint8Array(await file.arrayBuffer());let ext='',type='';if(buffer[0]===137&&buffer[1]===80&&buffer[2]===78&&buffer[3]===71){ext='png';type='image/png'}else if(buffer[0]===255&&buffer[1]===216&&buffer[2]===255){ext='jpg';type='image/jpeg'}else if(new TextDecoder().decode(buffer.slice(0,4))==='RIFF'&&new TextDecoder().decode(buffer.slice(8,12))==='WEBP'){ext='webp';type='image/webp'}else if(new TextDecoder().decode(buffer.slice(0,6)).startsWith('GIF8')){ext='gif';type='image/gif'}else throw new HttpError(415,'Dozwolone są zdjęcia PNG, JPG, WebP i GIF.');const key=crypto.randomUUID()+'.'+ext;await env.BUCKET.put(key,buffer,{httpMetadata:{contentType:type}});return json({url:'/media/'+key,name:file.name},201)}
 async function handle(request:Request):Promise<Response>{const url=new URL(request.url),path=decodeURIComponent(url.pathname).replace(/\/$/,'')||'/',method=request.method;
  try{
- if(path==='/'&&method==='GET')return html(maintenancePage);
  const authResponse=await handleAuth(request);if(authResponse)return authResponse;
  if(path.startsWith('/media/')&&method==='GET'){if(!env.BUCKET)return new Response(null,{status:404});const key=path.slice(7);if(!/^[a-f0-9-]+\.(?:png|jpg|webp|gif)$/.test(key))return new Response(null,{status:404});const object=await env.BUCKET.get(key);if(!object)return new Response(null,{status:404});return new Response(object.body,{headers:{'Content-Type':object.httpMetadata?.contentType||'application/octet-stream','Cache-Control':'public, max-age=31536000, immutable','X-Content-Type-Options':'nosniff'}})}
  if(path.startsWith('/api/admin/')){await requireAdmin(request);const db=database();await ensureSeed(db);if(method!=='GET')requireOrigin(request);

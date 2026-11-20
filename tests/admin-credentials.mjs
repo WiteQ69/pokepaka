@@ -7,7 +7,7 @@ import {join} from 'node:path';
 import {pathToFileURL} from 'node:url';
 import ts from 'typescript';
 
-const directory=await mkdtemp(join(tmpdir(),'pokepaka-auth-'));
+const directory=await mkdtemp(join(tmpdir(),'tcg-shop-auth-'));
 const sqlite=new DatabaseSync(':memory:');
 sqlite.exec('CREATE TABLE app_meta (key TEXT PRIMARY KEY,value TEXT NOT NULL)');
 const db={

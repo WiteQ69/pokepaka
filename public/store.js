@@ -5,11 +5,11 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const icon=n=>`<svg aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const money=n=>(n/100).toLocaleString('pl-PL',{minimumFractionDigits:2,maximumFractionDigits:2});
 const read=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}};
-let rawCart=read('pokepaka-cart-v3',{}),rawFavorites=read('pokepaka-favorites-v3',[]);
+let rawCart=read('tcg-shop-cart-v3',{}),rawFavorites=read('tcg-shop-favorites-v3',[]);
 let cart=rawCart&&typeof rawCart==='object'&&!Array.isArray(rawCart)?Object.fromEntries(Object.entries(rawCart).filter(([id,q])=>typeof id==='string'&&Number.isInteger(q)&&q>0&&q<=99)):{};
 let favorites=new Set(Array.isArray(rawFavorites)?rawFavorites.filter(x=>typeof x==='string').slice(0,200):[]),toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3200)}
-function persist(){try{localStorage.setItem('pokepaka-cart-v3',JSON.stringify(cart));localStorage.setItem('pokepaka-favorites-v3',JSON.stringify([...favorites]))}catch{}sync()}
+function persist(){try{localStorage.setItem('tcg-shop-cart-v3',JSON.stringify(cart));localStorage.setItem('tcg-shop-favorites-v3',JSON.stringify([...favorites]))}catch{}sync()}
 function sync(){$('#cart-count').textContent=Object.values(cart).reduce((a,b)=>a+b,0);$('#favorite-count').textContent=favorites.size;$('#favorite-count').hidden=!favorites.size;$$('[data-favorite]').forEach(b=>{const saved=favorites.has(b.dataset.favorite);b.classList.toggle('saved',saved);b.setAttribute('aria-pressed',String(saved));if(b.classList.contains('product-save'))b.querySelector('span').textContent=saved?'Zapisano w ulubionych':'Zapisz na później'});}
 async function fetchProducts(ids){if(!ids.length)return [];const loaded=[];for(let offset=0;offset<ids.length;offset+=50){const group=ids.slice(offset,offset+50),response=await fetch('/api/products?ids='+encodeURIComponent(group.join(',')));const result=await response.json();if(!response.ok)throw Error(result.error||'Nie udało się wczytać produktów.');group.forEach(id=>products.delete(id));result.products.forEach(p=>{products.set(p.id,p);loaded.push(p)})}return loaded}
 function add(id,quantity=1){const p=products.get(id);if(!p)return;if(!p.stock){toast('Ten produkt jest obecnie niedostępny.');return}const next=(cart[id]||0)+quantity;if(next>Math.min(p.stock,99)){toast(`Możesz dodać maksymalnie ${Math.min(p.stock,99)} szt. tego produktu.`);return}cart[id]=next;persist();toast('Dodano do koszyka ✓');if($('#cart-dialog').open)renderCart()}

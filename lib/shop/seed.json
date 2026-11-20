@@ -9,9 +9,9 @@
     "images": [
       "/assets/product-1.webp"
     ],
-    "description": "30th Anniversary : First Partner Seria 1 Chiński\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0001",
+    "description": "30th Anniversary : First Partner Seria 1 Chiński\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 4,
+    "sku": "DEMO-0001",
     "status": "published",
     "isLive": true,
     "featured": true,
@@ -27,9 +27,9 @@
     "images": [
       "/assets/product-2.webp"
     ],
-    "description": "Terastal Gathering Coin Set Espeon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0002",
+    "description": "Terastal Gathering Coin Set Espeon\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 5,
+    "sku": "DEMO-0002",
     "status": "published",
     "isLive": true,
     "featured": true,
@@ -45,12 +45,12 @@
     "images": [
       "/assets/product-3.webp"
     ],
-    "description": "Terastal Gathering Coin Set Umbreon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0003",
+    "description": "Terastal Gathering Coin Set Umbreon\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 6,
+    "sku": "DEMO-0003",
     "status": "published",
-    "isLive": true,
-    "featured": true,
+    "isLive": false,
+    "featured": false,
     "version": 1
   },
   {
@@ -63,12 +63,12 @@
     "images": [
       "/assets/product-4.webp"
     ],
-    "description": "Terastal Gathering Collectible Gift Box Jolteon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0004",
+    "description": "Terastal Gathering Collectible Gift Box Jolteon\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 3,
+    "sku": "DEMO-0004",
     "status": "published",
-    "isLive": true,
-    "featured": true,
+    "isLive": false,
+    "featured": false,
     "version": 1
   },
   {
@@ -81,12 +81,12 @@
     "images": [
       "/assets/product-5.webp"
     ],
-    "description": "Terastal Gathering Collectible Gift Box Umbreon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0005",
+    "description": "Terastal Gathering Collectible Gift Box Umbreon\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 4,
+    "sku": "DEMO-0005",
     "status": "published",
-    "isLive": true,
-    "featured": true,
+    "isLive": false,
+    "featured": false,
     "version": 1
   },
   {
@@ -99,12 +99,12 @@
     "images": [
       "/assets/product-6.webp"
     ],
-    "description": "Terastal Gathering Collectible Gift Box Espeon\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0006",
+    "description": "Terastal Gathering Collectible Gift Box Espeon\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 5,
+    "sku": "DEMO-0006",
     "status": "published",
-    "isLive": true,
-    "featured": true,
+    "isLive": false,
+    "featured": false,
     "version": 1
   },
   {
@@ -117,11 +117,11 @@
     "images": [
       "/assets/product-7.webp"
     ],
-    "description": "Naruto : Kayou Booster Pack\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0007",
+    "description": "Naruto : Kayou Booster Pack\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 6,
+    "sku": "DEMO-0007",
     "status": "published",
-    "isLive": true,
+    "isLive": false,
     "featured": false,
     "version": 1
   },
@@ -135,11 +135,11 @@
     "images": [
       "/assets/product-8.webp"
     ],
-    "description": "Naruto : Mithos 2 Edition\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0008",
+    "description": "Naruto : Mithos 2 Edition\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 3,
+    "sku": "DEMO-0008",
     "status": "published",
-    "isLive": true,
+    "isLive": false,
     "featured": false,
     "version": 1
   },
@@ -153,12 +153,12 @@
     "images": [
       "/assets/product-9.webp"
     ],
-    "description": "One Piece OP17 Booster Pack Angielski\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0009",
+    "description": "One Piece OP17 Booster Pack Angielski\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 4,
+    "sku": "DEMO-0009",
     "status": "published",
-    "isLive": true,
-    "featured": false,
+    "isLive": false,
+    "featured": true,
     "version": 1
   },
   {
@@ -171,11 +171,11 @@
     "images": [
       "/assets/product-10.webp"
     ],
-    "description": "Gem Pack Badge Set\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0010",
+    "description": "Gem Pack Badge Set\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 5,
+    "sku": "DEMO-0010",
     "status": "published",
-    "isLive": true,
+    "isLive": false,
     "featured": false,
     "version": 1
   },
@@ -189,11 +189,11 @@
     "images": [
       "/assets/product-11.webp"
     ],
-    "description": "Chasing Glory Together Badge Set\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0011",
+    "description": "Chasing Glory Together Badge Set\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 6,
+    "sku": "DEMO-0011",
     "status": "published",
-    "isLive": true,
+    "isLive": false,
     "featured": false,
     "version": 1
   },
@@ -207,12 +207,66 @@
     "images": [
       "/assets/product-12.webp"
     ],
-    "description": "Delta Reign 3 - Pack Blister\n\nProdukt kolekcjonerski z oferty PokePaka. Wersja językowa i podstawowe informacje znajdują się w specyfikacji.",
-    "stock": 0,
-    "sku": "PP-0012",
+    "description": "Delta Reign 3 - Pack Blister\n\nPrzykładowy produkt do prezentacji sklepu. Cena i stan magazynowy są demonstracyjne. Produkt pozwala przetestować kartę produktu, galerię i dodawanie do koszyka.",
+    "stock": 3,
+    "sku": "DEMO-0012",
     "status": "published",
-    "isLive": true,
-    "featured": false,
+    "isLive": false,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "demo-card-charizard",
+    "slug": "karta-charizard-demo",
+    "name": "Pokémon TCG — Charizard ex",
+    "priceCents": 26900,
+    "categorySlug": "single",
+    "language": "Angielski",
+    "images": [
+      "/assets/charizard.png"
+    ],
+    "description": "Charizard ex — pojedyncza karta do kolekcji.\n\nProdukt przykładowy w sklepie demonstracyjnym. Cena i liczba sztuk służą wyłącznie do prezentacji; to nie jest rzeczywista oferta sprzedaży.",
+    "stock": 5,
+    "sku": "DEMO-CHARIZARD",
+    "status": "published",
+    "isLive": false,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "demo-card-umbreon",
+    "slug": "karta-umbreon-demo",
+    "name": "Pokémon TCG — Umbreon VMAX",
+    "priceCents": 119900,
+    "categorySlug": "single",
+    "language": "Angielski",
+    "images": [
+      "/assets/umbreon.png"
+    ],
+    "description": "Umbreon VMAX — pojedyncza karta do kolekcji.\n\nProdukt przykładowy w sklepie demonstracyjnym. Cena i liczba sztuk służą wyłącznie do prezentacji; to nie jest rzeczywista oferta sprzedaży.",
+    "stock": 2,
+    "sku": "DEMO-UMBREON",
+    "status": "published",
+    "isLive": false,
+    "featured": true,
+    "version": 1
+  },
+  {
+    "id": "demo-card-pikachu",
+    "slug": "karta-pikachu-demo",
+    "name": "Pokémon TCG — Pikachu VMAX",
+    "priceCents": 79900,
+    "categorySlug": "single",
+    "language": "Angielski",
+    "images": [
+      "/assets/pikachu.png"
+    ],
+    "description": "Pikachu VMAX — pojedyncza karta do kolekcji.\n\nProdukt przykładowy w sklepie demonstracyjnym. Cena i liczba sztuk służą wyłącznie do prezentacji; to nie jest rzeczywista oferta sprzedaży.",
+    "stock": 4,
+    "sku": "DEMO-PIKACHU",
+    "status": "published",
+    "isLive": false,
+    "featured": true,
     "version": 1
   }
 ]

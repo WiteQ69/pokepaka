@@ -1,7 +1,8 @@
 import {readFile,writeFile,mkdir,unlink} from 'node:fs/promises';
 import {randomBytes,scryptSync} from 'node:crypto';
 
-const origin=new URL(process.argv[2]||'https://pokepaka.vercel.app').origin;
+if(!process.argv[2])throw Error('Podaj adres wdrożonego sklepu jako argument.');
+const origin=new URL(process.argv[2]).origin;
 if(!origin.startsWith('https://')&&!/^http:\/\/(localhost|127\.0\.0\.1)(:|$)/.test(origin))throw Error('Use HTTPS for the administrator credentials.');
 await mkdir('.local',{recursive:true});
 const passwordFile='.local/admin-password.txt',pendingFile='.local/admin-password.pending.txt';

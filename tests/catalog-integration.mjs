@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-const vercel=process.env.POKEPAKA_TEST_RUNTIME==='vercel';
+const vercel=process.env.SHOP_TEST_RUNTIME==='vercel';
 const origin=process.env.TEST_ORIGIN||(vercel?'http://127.0.0.1:3000':'http://127.0.0.1:5173');
 const login=vercel?await fetch(origin+'/admin/login',{method:'POST',redirect:'manual',headers:{origin,'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({password:(await fs.readFile('.local/admin-password.txt','utf8')).trim(),return_to:'/admin'})}):await fetch(origin+'/signin-with-chatgpt?return_to=/admin',{redirect:'manual'});
 if(!login.headers.get('set-cookie')){const content=await login.text();throw Error(JSON.stringify({loginStatus:login.status,error:content.match(/class="login-error"[^>]*>([^<]+)/)?.[1],needsSetup:content.includes('Do uzupełnienia')}))}
@@ -17,7 +17,7 @@ for(const c of flatten(all)){const path=c.slug==='live-stream'?'/live-stream':c.
 for(const p of seed.value.products.filter(p=>p.status==='published'))check((await request('/produkt/'+p.slug,{authenticated:false})).status,200,'Product detail '+p.slug);
 check((await request('/produkt/nieistniejacy-produkt',{authenticated:false})).status,404,'Unknown product returns 404');
 check((await request('/kategoria/nieistniejaca',{authenticated:false})).status,404,'Unknown category returns 404');
-const base={name:'Produkt testowy katalogu',slug:'produkt-integracyjny-'+Date.now(),priceCents:12345,categorySlug:'booster-box',language:'Angielski',images:['/assets/product-1.webp'],description:'Opis testowy.\n\n<script>alert("xss")</script>',stock:7,sku:'PP-INTEGRATION-TEST',status:'published',isLive:true,featured:false,version:1};
+const base={name:'Produkt testowy katalogu',slug:'produkt-integracyjny-'+Date.now(),priceCents:12345,categorySlug:'booster-box',language:'Angielski',images:['/assets/product-1.webp'],description:'Opis testowy.\n\n<script>alert("xss")</script>',stock:7,sku:'TCG-INTEGRATION-TEST',status:'published',isLive:true,featured:false,version:1};
 check((await request('/api/admin/products',{method:'POST',body:base,headers:{origin:'https://foreign.example'}})).status,403,'CSRF blocked');
 check((await request('/api/admin/products',{method:'POST',body:{...base,priceCents:-1}})).status,400,'Negative price rejected');
 check((await request('/api/admin/products',{method:'POST',body:{...base,images:['javascript:alert(1)']}})).status,400,'Unsafe image URL rejected');

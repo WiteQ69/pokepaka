@@ -1,4 +1,4 @@
-# PokePaka — sklep i panel administratora
+# Twój sklep TCG — sklep i panel administratora
 
 Wielostronicowy sklep Pokémon w czarno-żółtym stylu: 50 kategorii z osobnymi adresami, strony produktów, wyszukiwanie, filtrowanie i panel zarządzania produktami.
 
@@ -22,7 +22,7 @@ W pustej konfiguracji lokalnej:
 npm ci
 node scripts/create-admin-env.mjs
 Copy-Item .local/admin-vercel.env .env.local
-Add-Content .env.local 'POKEPAKA_LOCAL=1'
+Add-Content .env.local 'SHOP_LOCAL=1'
 npm run dev
 ```
 
@@ -44,7 +44,7 @@ Kategorie są w `lib/shop/categories.json`, a 12 produktów startowych w `lib/sh
 
 ## Zgodność z Sites
 
-Zachowano osobny runtime Cloudflare D1/R2 i logowanie Sites. Polecenia `npm run dev:sites`, `npm run build:sites` i `npm run start:sites` uruchamiają ten wariant. Budowanie przez workflow Sites wymaga `POKEPAKA_TARGET=cloudflare`.
+Zachowano osobny runtime Cloudflare D1/R2 i logowanie Sites. Polecenia `npm run dev:sites`, `npm run build:sites` i `npm run start:sites` uruchamiają ten wariant. Budowanie przez workflow Sites wymaga `SHOP_TARGET=cloudflare`.
 
 Na Sites serwer rozpoznaje administratora po sekrecie `ADMIN_EMAIL_SHA256`; adres e-mail nie jest wyświetlany w interfejsie. Migracje D1 pozostają w `drizzle`, a schemat PostgreSQL w `db/postgres.sql`. Dane z D1/R2 nie są automatycznie kopiowane do Neon/Blob.
 
@@ -53,7 +53,7 @@ Na Sites serwer rozpoznaje administratora po sekrecie `ADMIN_EMAIL_SHA256`; adre
 Test integracyjny sprawdza 50 kategorii, produkty, 404, autoryzację, walidację i ochronę Origin, CRUD, konflikty wersji, szkice, archiwizację, galerie oraz zapis i odczyt zdjęć. Przeciwko lokalnemu Next.js na porcie 3000:
 
 ```powershell
-$env:POKEPAKA_TEST_RUNTIME='vercel'
+$env:SHOP_TEST_RUNTIME='vercel'
 node tests/catalog-integration.mjs
 ```
 
@@ -63,4 +63,4 @@ Test korzysta z lokalnego hasła i tworzy produkt testowy, który na końcu arch
 
 Koszyk i ulubione zapisują się na urządzeniu klienta. Koszyk sprawdza ceny i dostępność, ale nie rezerwuje towaru. Płatności, finalizacja zamówień, wysyłka i obsługa zamówień wymagają osobnej integracji; strona informuje o tym klienta i nie przyjmuje płatności.
 
-Przezroczyste logo znajduje się w `public/assets/pokepaka-logo.png`. Zdjęcia produktów pochodzą z pokepaka.pl, grafiki kart z images.pokemontcg.io, a ilustracja Eevee z PokeAPI/sprites. Znaki Pokémon i nazwy produktów należą do ich właścicieli.
+W miejscu logo widnieje neutralny napis „TWOJE LOGO”. Lokalne grafiki produktów służą do prezentacji katalogu. Znaki Pokémon i nazwy produktów należą do ich właścicieli.
